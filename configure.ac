@@ -26,8 +26,8 @@ m4_define([PRJ_version],ifelse(
 # initialization
 ###############################################################################
 
-AC_PREREQ([2.61])
-AC_INIT(PRJ_name,PRJ_version,PRJ_bugreport)
+AC_PREREQ([2.72])
+AC_INIT([PRJ_name],[PRJ_version],[PRJ_bugreport])
 
 AC_MSG_NOTICE([
   -->
@@ -229,7 +229,7 @@ if test "$enable_fvisibility" != "no" -a "$GXX" = "yes"; then
             AC_CACHE_CHECK([if $CXX supports -fvisibility],[x_cv_fvisibility],[
                 x_save="$CXXFLAGS"
                 CXXFLAGS="$CXXFLAGS -fvisibility=hidden"
-                AC_TRY_COMPILE([],[],[x_cv_fvisibility=yes],[x_cv_fvisibility=no])
+                AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[]], [[]])],[x_cv_fvisibility=yes],[x_cv_fvisibility=no])
                 if test "$x_cv_fvisibility" != "yes"; then
                     CXXFLAGS="$x_save"
                 fi
