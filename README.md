@@ -12,10 +12,21 @@ autoupdate
 aclocal
 autoreconf -fi
 ./configure
-### edit GNUmakefile
+# edit GNUmakefile
+sed -i '' 's/CXXFLAGS = -g -O2 -fvisibility=hidden$/CXXFLAGS = -g -O2 -fvisibility=hidden -Wno-c++11-narrowing/' Makefile
 make
 ```
 after that binaries will located at `.libs` filder.
+
+### editing GNUmakefile before run `make`
+
+find `CXXFLAGS` definition:
+```
+grep -n "^CXXFLAGS" GNUmakefile
+533:CXXFLAGS = -g -O2 -fvisibility=hidden
+```
+then put `CXXFLAGS += -Wno-c++11-narrowing` right after 533 string
+
 
 ## Binaries 
 
